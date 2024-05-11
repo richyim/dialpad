@@ -14,6 +14,11 @@ function displayCount(count) {
 
         // Add click event listener to the digit box
         digitBox.addEventListener('click', function() {
+
+            // Encode the digit to ensure special characters are transmitted correctly
+            const encodedDigit = encodeURIComponent(digit);
+
+            
             // Call playTone with frequency 800 Hz and duration 0.4 seconds
             window.playTone(800, 0.4);
 
