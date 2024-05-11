@@ -32,7 +32,14 @@ function displayCount(count) {
                 // body: `digit=${digit}`
             })
             .then(response => response.text())
-            .then(text => console.log(text))
+            .then(text => {
+                console.log(text);
+                // Check the returned value from the API
+                if (text === "0") {
+                    // If the return value is "0", show a pop-up window
+                    alert("Password is correct");
+                } // If the return value is "1", do nothing
+            })
             .catch(error => console.error('Error:', error));
 
             // Change the background color of the clicked digit box
