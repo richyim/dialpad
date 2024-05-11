@@ -23,7 +23,8 @@ function displayCount(count) {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `digit=${digit}`
+                body: `digit=${encodedDigit}`                
+                // body: `digit=${digit}`
             })
             .then(response => response.text())
             .then(text => console.log(text))
