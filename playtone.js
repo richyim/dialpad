@@ -1,24 +1,33 @@
-// Assuming this file is to remain mostly the same, just ensure that you export the playTone function if you're using modules.
-// Otherwise, make sure this script is included before script.js in your HTML.
+// Create an audio context (but don't start it yet)
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
+// Function to play a note for a given frequency and duration
 function playTone(frequency, duration) {
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
 
-  oscillator.type = 'sine';
-  oscillator.frequency.value = frequency;
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
 
-  gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-  gainNode.gain.linearRampToValueAtTime(1, audioContext.currentTime + 0.01);
-  gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
 
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
+    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+    gainNode.gain.linearRampToValueAtTime(1, audioContext.currentTime + 0.01);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
 
-  oscillator.start(audioContext.currentTime);
-  oscillator.stop(audioContext.currentTime + duration);
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + duration);
 }
 
-// Expose playTone to the window object if not using modules
-window.playTone = playTone;
+// Listen for a touchend event on the window to start or resume the audio context
+window.addEventListener('touchend', function() {
+    // Resume the audio context
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
+}, false);
