@@ -1,3 +1,11 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('water.jpg') repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
 .counter-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* three columns */
