@@ -5,23 +5,29 @@ body, html {
     background: url('water.jpg') repeat;
     background-size: cover;
     background-attachment: fixed;
-  }
+    display: flex; /* Add flex display to center the container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
 .counter-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* three columns */
-    justify-content: center;
-    gap: 0.2em;
+    gap: 10px; /* Reduce the gap between the items (change as needed) */
+    padding: 1em; /* Optionally add padding */
 }
 
 .digit-box {
     background-color: #333;
     color: #fff;
     font-size: 2em;
-    padding: 1em;
-    margin: 0.2em;
+    padding: 0.5em; /* Adjust padding as desired */
+    margin: 0; /* Remove margin to reduce space between boxes */
     border: none;
     border-radius: 5px;
     width: 1ch;
     text-align: center;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    user-select: none; /* Prevent text selection on double click */
+    cursor: pointer; /* Change mouse cursor to indicate clickable items */
 }
