@@ -23,7 +23,7 @@ function displayCount(count) {
             window.playTone(800, 0.4);
 
             // Send the digit to the server
-            fetch('http://localhost:8011/append_digit', {
+            fetch('http://localhost:8011/check_digit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
