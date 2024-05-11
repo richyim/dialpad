@@ -16,12 +16,23 @@ function displayCount(count) {
         digitBox.addEventListener('click', function() {
             // Call playTone with frequency 800 Hz and duration 0.4 seconds
             window.playTone(800, 0.4);
-            alert ('You have click a button' + digit);
-            
+
+            // Send the digit to the server
+            fetch('http://localhost:8011/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `digit=${digit}`
+            })
+            .then(response => response.text())
+            .then(text => console.log(text))
+            .catch(error => console.error('Error:', error));
+
             // Change the background color of the clicked digit box
-            digitBox.style.backgroundColor = '#555'; // New color on click
+            digitBox.classList.add('digit-box-clicked');
             setTimeout(function() {
-                digitBox.style.backgroundColor = ''; // Reset to original after 0.3 seconds
+                digitBox.classList.remove('digit-box-clicked');
             }, 300);
         });
 
