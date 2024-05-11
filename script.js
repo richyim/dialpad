@@ -16,7 +16,8 @@ function displayCount(count) {
         digitBox.addEventListener('click', function() {
             // Call playTone with frequency 800 Hz and duration 0.4 seconds
             window.playTone(800, 0.4);
-
+            windows.alert ('You have click a button');
+            
             // Change the background color of the clicked digit box
             digitBox.style.backgroundColor = '#555'; // New color on click
             setTimeout(function() {
